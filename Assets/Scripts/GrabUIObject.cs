@@ -7,30 +7,17 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class GrabUIObject : MonoBehaviour
 {
-    [Tooltip("Prefab to spawn in hand when button is clicked")]
     public GameObject prefabToSpawn;
     private XRGrabInteractable grabInteractable;
-    public XRInteractionManager interactionManager;
+    [SerializeField]
+    private XRInteractionManager interactionManager;
 
     private void Awake()
     {
         grabInteractable = this.GetComponent<XRGrabInteractable>();
 
         grabInteractable.selectEntered.AddListener(OnGrab);
-        grabInteractable.selectExited.AddListener(OnRelease);
 
-
-        Vector3 spawnPosition = this.gameObject.transform.position;
-        Quaternion spawnRotation = this.gameObject.transform.rotation;
-        Debug.Log(spawnRotation);
-        Debug.Log(spawnPosition);
-        RectTransform rectTransform = GetComponent<RectTransform>();
-        Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
-        // Get the world position of the UI element
-        spawnPosition = rectTransform.anchoredPosition;
-        spawnRotation = rectTransform.rotation;
-
-        Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
     }
 
     public void OnButtonGrabbed(XRBaseInteractor interactor)
@@ -64,8 +51,7 @@ public class GrabUIObject : MonoBehaviour
 
         Vector3 spawnPosition = this.gameObject.transform.position;
         Quaternion spawnRotation = this.gameObject.transform.rotation;
-        Debug.Log(spawnRotation);
-        Debug.Log(spawnPosition);
+
         // Instantiate the prefab at that position and rotation
         Instantiate(prefabToSpawn, args.interactorObject.transform.position, this.gameObject.transform.rotation);
         GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
@@ -74,11 +60,7 @@ public class GrabUIObject : MonoBehaviour
 
     }
 
-    private void OnRelease(SelectExitEventArgs args)
-    {
-        // Optional: reattach to Canvas when released
-        //transform.SetParent(originalParent, true);
-    }
+
 
 
 

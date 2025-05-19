@@ -1,16 +1,29 @@
+using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.XR.Interaction.Toolkit;
+using UnityEngine.XR.Interaction.Toolkit.Interactables;
+    
 public class OnRelease2Dto3D : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public GameObject prefabToSpawn;
+    private XRGrabInteractable grabInteractable;
+    [SerializeField]
+    private XRInteractionManager interactionManager;
+    private void Awake()
     {
-        
+        grabInteractable = this.GetComponent<XRGrabInteractable>();
+        interactionManager = GameObject.Find("XR Interaction Manager")?.GetComponent<XRInteractionManager>();
+
+        grabInteractable.selectExited.AddListener(OnRelease);
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnRelease(SelectExitEventArgs args)
     {
-        
+        Vector3 spawnPosition = this.gameObject.transform.position;
+        Quaternion spawnRotation = this.gameObject.transform.rotation;
+
+        // Instantiate the prefab at that position and rotation
+        Instantiate(prefabToSpawn, args.interactorObject.transform.position, this.gameObject.transform.rotation);
     }
 }
