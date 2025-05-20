@@ -1,7 +1,10 @@
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
-    
+
+/// <summary>
+/// Transforms the UI images into 3D objects from prefabs
+/// </summary>
 public class OnRelease2Dto3D : MonoBehaviour
 {
     [SerializeField]

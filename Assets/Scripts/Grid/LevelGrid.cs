@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/// <summary>
+/// Manages the grid-based layout of the level, handling block placement, movement, and validation.
+/// </summary>
 public class LevelGrid : MonoBehaviour
 {
     public static LevelGrid Instance { get; private set; }
@@ -23,8 +26,10 @@ public class LevelGrid : MonoBehaviour
         Instance = this;
 
         gridSystem = new GridSystem(15, 15, 2f);
-        gridDebugSystem = new GridDebugSystem(gridSystem);
-        gridDebugSystem.CreateDebugObjects(gridDebugObjectPrefab);
+
+        //Debug lines to see the grid visually
+        //gridDebugSystem = new GridDebugSystem(gridSystem);
+        //gridDebugSystem.CreateDebugObjects(gridDebugObjectPrefab);
     }
 
     public void AddBlockAtGridPosition(GridPosition gridPosition, Block block)

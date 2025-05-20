@@ -2,7 +2,9 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
-
+/// <summary>
+/// Turns grabbed UI object into a prefab quad that can move around freely
+/// </summary>
 public class GrabUIObject : MonoBehaviour
 {
     [SerializeField]

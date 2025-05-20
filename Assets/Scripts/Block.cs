@@ -6,6 +6,9 @@ using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
+/// <summary>
+/// Represents a block object that can be grabbed and moved within a grid system using XR interactions.
+/// </summary>
 public class Block : MonoBehaviour
 {
     private XRGrabInteractable grabInteractable;

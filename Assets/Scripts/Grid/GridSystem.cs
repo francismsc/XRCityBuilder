@@ -2,24 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System;
-
+/// <summary>
+/// Represents a 2D grid system for managing grid positions and their corresponding GridObjects.
+/// </summary>
 public class GridSystem
 {
     private int width;
-    private int lenght;
+    private int length;
     private float cellSize;
     private GridObject[,] gridObjectArray;
-    public GridSystem(int width, int lenght, float cellSize)
+    public GridSystem(int width, int length, float cellSize)
     {
         this.width = width;
-        this.lenght = lenght;
+        this.length = length;
         this.cellSize = cellSize;
 
-        gridObjectArray = new GridObject[width, lenght];
+        gridObjectArray = new GridObject[width, length];
 
         for (int z = 0; z < width; z++)
         {
-            for (int x = 0; x < lenght; x++)
+            for (int x = 0; x < length; x++)
             {
                 GridPosition gridPosition = new GridPosition(z, x);
                 gridObjectArray[z, x] = new GridObject(this, gridPosition);
@@ -51,9 +53,9 @@ public class GridSystem
         return gridPosition.z >= 0 &&
                 gridPosition.x >= 0 &&
                 gridPosition.z < width &&
-                gridPosition.x < lenght;
+                gridPosition.x < length;
     }
 
     public int GetGridWidth() => width;
-    public int GetGridLenght() => lenght;
+    public int GetGridLenght() => length;
 }
