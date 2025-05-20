@@ -67,15 +67,6 @@ public class Train : MonoBehaviour
         }
     }
 
-    public void SwitchBifurcation()
-    {
-        if (currentNode == null) return;
-
-        currentNode.SwitchNextNode(isMovingForward);
-        nextNode = currentNode.GetNextNode(isMovingForward);
-
-        Debug.Log($"Switched next node to {nextNode?.name ?? "None"}");
-    }
 
     public void ReverseDirection()
     {
@@ -95,7 +86,7 @@ public class Train : MonoBehaviour
     /// </summary>
     public void StartForward()
     {
-            isMovingForward = false;
+            isMovingForward = true;
             nextNode = currentNode.GetNextNode(isMovingForward);
             stateMachine.ChangeState(new MovingState());
             Debug.Log("Train started moving in reverse.");

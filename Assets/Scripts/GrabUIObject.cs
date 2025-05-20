@@ -6,7 +6,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactors;
 public class GrabUIObject : MonoBehaviour
 {
     [SerializeField]
-    public GameObject prefabToSpawn;
+    private GameObject prefabToSpawn;
     [SerializeField]
     private XRInteractionManager interactionManager;
 
@@ -14,7 +14,7 @@ public class GrabUIObject : MonoBehaviour
 
     private void Awake()
     {
-        grabInteractable = this.GetComponent<XRGrabInteractable>();
+        grabInteractable = GetComponent<XRGrabInteractable>();
         grabInteractable.selectEntered.AddListener(OnGrab);
     }
 
@@ -52,6 +52,14 @@ public class GrabUIObject : MonoBehaviour
         interactionManager.SelectEnter(args.interactorObject, spawnedPrefab.GetComponent<IXRSelectInteractable>());
         Destroy(this.gameObject);
 
+    }
+
+    private void OnDestroy()
+    {
+        if (grabInteractable != null)
+        {
+            grabInteractable.selectEntered.RemoveListener(OnGrab);
+        }
     }
 
 

@@ -10,6 +10,14 @@ public class Track : MonoBehaviour
 
     public TrackNode GetStartingNode()
     {
-        return allNodes != null && allNodes.Count > 0 ? allNodes[0] : null;
+        if (allNodes != null)
+        {
+            if (allNodes.Count > 0)
+            {
+                return allNodes[0];
+            }
+        }
+
+        return null;
     }
 }

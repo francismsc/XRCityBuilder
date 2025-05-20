@@ -5,16 +5,21 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class OnRelease2Dto3D : MonoBehaviour
 {
     [SerializeField]
-    public GameObject prefabToSpawn;
+    private GameObject prefabToSpawn;
     private XRGrabInteractable grabInteractable;
     private XRInteractionManager interactionManager;
     private void Awake()
     {
-        grabInteractable = this.GetComponent<XRGrabInteractable>();
-        interactionManager = GameObject.Find("XR Interaction Manager")?.GetComponent<XRInteractionManager>();
+        grabInteractable = GetComponent<XRGrabInteractable>();
+        interactionManager = FindFirstObjectByType<XRInteractionManager>();
 
+
+
+    }
+
+    private void Start()
+    {
         grabInteractable.selectExited.AddListener(OnRelease);
-
     }
 
     private void OnRelease(SelectExitEventArgs args)
@@ -25,5 +30,13 @@ public class OnRelease2Dto3D : MonoBehaviour
         // Instantiate the prefab at that position and rotation
         Instantiate(prefabToSpawn, args.interactorObject.transform.position, this.gameObject.transform.rotation);
         Destroy(this.gameObject);
+    }
+
+    private void OnDestroy()
+    {
+        if (grabInteractable != null)
+        {
+            grabInteractable.selectExited.RemoveListener(OnRelease);
+        }
     }
 }

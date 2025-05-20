@@ -4,10 +4,16 @@ using UnityEngine;
 public class TrackNode : MonoBehaviour
 {
     [Tooltip("Nodes connected going forward from this node.")]
-    public List<TrackNode> forwardConnectedNodes = new List<TrackNode>();
+    [SerializeField]
+    private List<TrackNode> forwardConnectedNodes = new List<TrackNode>();
 
     [Tooltip("Nodes connected going reverse from this node.")]
-    public List<TrackNode> reverseConnectedNodes = new List<TrackNode>();
+    [SerializeField]
+    private List<TrackNode> reverseConnectedNodes = new List<TrackNode>();
+
+    [SerializeField]
+    private List<GameObject> switchLights;
+
 
 
     private int currentForwardIndex = 0;
@@ -33,17 +39,38 @@ public class TrackNode : MonoBehaviour
     /// <summary>
     /// Cycles the next node in the current direction.
     /// </summary>
-    public void SwitchNextNode(bool isMovingForward)
+    public void SwitchNextNodeForward()
     {
-        if (isMovingForward)
+        if (forwardConnectedNodes.Count == 0) return;
+        currentForwardIndex = (currentForwardIndex + 1) % forwardConnectedNodes.Count;
+        for(int i = 0; i<=switchLights.Count;i++)
         {
-            if (forwardConnectedNodes.Count == 0) return;
-            currentForwardIndex = (currentForwardIndex + 1) % forwardConnectedNodes.Count;
+            if(currentForwardIndex == i)
+            {
+                switchLights[i].GetComponent<ParticleSystem>().Play();
+            }else
+            {
+                switchLights[i].GetComponent<ParticleSystem>().Stop();
+            }
         }
-        else
+        
+        
+    }
+
+    public void SwitchNextNodeReverse()
+    {
+        if (forwardConnectedNodes.Count == 0) return;
+        currentReverseIndex = (currentReverseIndex + 1) % reverseConnectedNodes.Count;
+        for (int i = 0; i <= switchLights.Count; i++)
         {
-            if (reverseConnectedNodes.Count == 0) return;
-            currentReverseIndex = (currentReverseIndex + 1) % reverseConnectedNodes.Count;
+            if (currentReverseIndex == i)
+            {
+                switchLights[currentReverseIndex].GetComponent<ParticleSystem>().Play();
+            }
+            else
+            {
+                switchLights[currentReverseIndex].GetComponent<ParticleSystem>().Stop();
+            }
         }
     }
 
