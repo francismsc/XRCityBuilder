@@ -37,6 +37,7 @@ public class LevelGrid : MonoBehaviour
 
     public List<Block> GetBlockListAtGridPosition(GridPosition gridPosition)
     {
+        if (!IsValidGridPosition(gridPosition)) return null;
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         return gridObject.GetBlockList();
     }
@@ -44,6 +45,7 @@ public class LevelGrid : MonoBehaviour
 
     public void RemoveBlockAtGridPosition(GridPosition gridPosition, Block block)
     {
+        if (!IsValidGridPosition(gridPosition)) return;
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
         gridObject.RemoveBlock(block);
     }
@@ -70,6 +72,7 @@ public class LevelGrid : MonoBehaviour
 
     public bool HasBlockOnGridPosition(GridPosition gridPosition)
     {
+        if (!IsValidGridPosition(gridPosition)) return false;
         GridObject gridObject = gridSystem.GetGridObject(gridPosition);
 
         return gridObject.HasAnyBlock();
@@ -81,6 +84,7 @@ public class LevelGrid : MonoBehaviour
 
     public void ClearGridPosition(GridPosition gridPosition)
     {
+        if (!IsValidGridPosition(gridPosition)) return;
         gridSystem.GetGridObject(gridPosition).GetBlockList().Clear();
     }
 
