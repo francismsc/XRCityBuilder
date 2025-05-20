@@ -7,10 +7,7 @@ public class OnRelease2Dto3D : MonoBehaviour
 {
     public GameObject prefabToSpawn;
     private XRGrabInteractable grabInteractable;
-    [SerializeField]
     private XRInteractionManager interactionManager;
-    [SerializeField]
-    private ParticleSystem transitionEffect;
     private void Awake()
     {
         grabInteractable = this.GetComponent<XRGrabInteractable>();
@@ -28,6 +25,5 @@ public class OnRelease2Dto3D : MonoBehaviour
         // Instantiate the prefab at that position and rotation
         Instantiate(prefabToSpawn, args.interactorObject.transform.position, this.gameObject.transform.rotation);
         Destroy(this.gameObject);
-        transitionEffect.Play();
     }
 }

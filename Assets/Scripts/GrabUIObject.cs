@@ -52,8 +52,7 @@ public class GrabUIObject : MonoBehaviour
         Vector3 spawnPosition = this.gameObject.transform.position;
         Quaternion spawnRotation = this.gameObject.transform.rotation;
 
-        // Instantiate the prefab at that position and rotation
-        Instantiate(prefabToSpawn, args.interactorObject.transform.position, this.gameObject.transform.rotation);
+
         GameObject spawnedPrefab = Instantiate(prefabToSpawn, spawnPosition, spawnRotation);
         interactionManager.SelectEnter(args.interactorObject, spawnedPrefab.GetComponent<IXRSelectInteractable>());
         Destroy(this.gameObject);
