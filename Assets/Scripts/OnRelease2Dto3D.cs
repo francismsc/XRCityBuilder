@@ -1,10 +1,10 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
     
 public class OnRelease2Dto3D : MonoBehaviour
 {
+    [SerializeField]
     public GameObject prefabToSpawn;
     private XRGrabInteractable grabInteractable;
     private XRInteractionManager interactionManager;

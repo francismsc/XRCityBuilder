@@ -10,16 +10,6 @@ public class MovingState : ITrainState
     public void Update(Train train)
     {
         train.MoveAlongTrack();
-
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            train.SwitchBifurcation();
-        }
-
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            train.ReverseDirection();
-        }
     }
 
     public void Exit(Train train)
