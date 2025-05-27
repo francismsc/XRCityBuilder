@@ -1,5 +1,4 @@
 # XRCityBuilder
-## Test Project for Infinity Games
 
 This project has been built in Unity using XR Interaction Toolkit 3.1.2. It was tested using Oculus Quest 2 and played with the Quest 2 controllers.
 ### City Development
